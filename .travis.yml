@@ -21,3 +21,16 @@ after_success:
   - docker push yonatanaiz/multi-client
   - docker push yonatanaiz/multi-worker
   - docker push yonatanaiz/multi-nginx
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker-1
+  env: MultiDocker1-env
+  bucket_name: elasticbeanstalk-us-east-2-039538527831
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
